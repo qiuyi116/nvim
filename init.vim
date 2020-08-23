@@ -90,8 +90,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 let g:neoterm_autoscroll = 1
 "
 autocmd TermOpen term://* startinsert
-" tnoremap <C-N> <C-\><C-N>
-" tnoremap <C-O> <C-\><C-N><C-O>
 let g:terminal_color_0  = '#000000'
 let g:terminal_color_1  = '#FF5555'
 let g:terminal_color_2  = '#50FA7B'
@@ -147,6 +145,9 @@ noremap <silent> J 5j
 " J/L keys for 5 times j/l (faster navigation)
 noremap <silent> H 5h
 noremap <silent> L 5l
+" C-a C-e for line move
+noremap <C-a> 0
+noremap <C-e> $
 
 " Mapping <esc>
 inoremap jj <ESC>
@@ -217,6 +218,10 @@ noremap <LEADER>/ :term<CR>
 " Term title
 " :autocmd TermOpen * setlocal statusline=%{b:term_title}
 
+" =====================
+" === Plugins Setup ===
+" =====================
+
 " ===
 " === Install Plugins with Vim-Plug
 " === In normal mode type "PlugInstall" to install plugs
@@ -250,7 +255,7 @@ Plug 'mbbill/undotree/'
 
 " Other visual enhancement
 Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-cursorword'
 Plug 'tmhedberg/SimpylFold'
 Plug 'mhinz/vim-startify'
 
@@ -260,6 +265,7 @@ Plug 'luochen1990/rainbow'
 " Git
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " HTML, CSS, JavaScript, JSON, etc.
@@ -268,6 +274,12 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less'] }
 Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 Plug 'mattn/emmet-vim'
+
+" markdown
+" Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+
+" Bookmarks
+Plug 'kshenoy/vim-signature'
 
 " Python
 " Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
@@ -298,7 +310,8 @@ Plug 'ron89/thesaurus_query.vim'
 " Other useful utilities
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'junegunn/goyo.vim' " distraction free writing mode
+" distraction free writing mode
+Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
@@ -319,6 +332,21 @@ Plug 'connorholyday/vim-snazzy'
 
 " Initialize plugin system
 call plug#end()
+
+
+" open transparent and color
+let g:SnazzyTransparent = 1
+" enable true colors support
+set termguicolors
+"colorscheme snazzy
+let g:space_vim_transp_bg = 1
+
+let g:lightline = {
+  \     'active': {
+  \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+  \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
+  \     }
+  \ }
 
 
 " ===
@@ -360,6 +388,31 @@ let g:rainbow_active = 1
 " === NERDTree
 " ===
 map tt :NERDTreeToggle<CR>
+let NERDTreeMapOpenExpl = ""
+let NERDTreeMapUpdir = ""
+let NERDTreeMapUpdirKeepOpen = "l"
+let NERDTreeMapOpenSplit = ""
+let NERDTreeOpenVSplit = ""
+let NERDTreeMapActivateNode = "i"
+let NERDTreeMapOpenInTab = "o"
+let NERDTreeMapPreview = ""
+let NERDTreeMapCloseDir = "n"
+let NERDTreeMapChangeRoot = "y"
+
+" ==
+" == NERDTree-git
+" ==
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "?",
+    \ "Staged"    : "?",
+    \ "Untracked" : "?",
+    \ "Renamed"   : "?",
+    \ "Unmerged"  : "?",
+    \ "Deleted"   : "?",
+    \ "Dirty"     : "?",
+    \ "Clean"     : "??",
+    \ "Unknown"   : "?"
+    \ }
 
 " ===
 " === CtrlP
@@ -375,3 +428,78 @@ let g:ctrlp_prompt_mappings = {
 " ===
 let g:undotree_DiffAutoOpen = 0
 map U :UndotreeToggle<CR>
+
+" ===
+" === vim-indent-guide
+" ===
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 1
+silent! unmap <LEADER>ig
+autocmd WinEnter * silent! unmap <LEADER>ig
+
+" ===
+" === Taglist
+" ===
+map <silent> T :TagbarOpenAutoClose<CR>
+
+" ===
+" === Goyo
+" ===
+map <LEADER>gy :Goyo<CR>
+
+" ===
+" === vim-signiture
+" ===
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "dm-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "dm/",
+        \ 'PurgeMarkers'       :  "dm?",
+        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevLineAlpha'  :  "",
+        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListLocalMarks'     :  "m/",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+
+" ==
+" == vim-multiple-cursor
+" ==
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_start_word_key      = '<c-k>'
+"let g:multi_cursor_select_all_word_key = '<a-k>'
+"let g:multi_cursor_start_key           = 'g<c-k>'
+"let g:multi_cursor_select_all_key      = 'g<a-k>'
+"let g:multi_cursor_next_key            = '<c-k>'
+"let g:multi_cursor_prev_key            = '<c-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
+
+" ===
+" === Startify
+" ===
+"let g:startify_lists = [
+"      \ { 'type': 'files',     'header': ['   MRU']            },
+"      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+"      \ { 'type': 'commands',  'header': ['   Commands']       },
+"      \ ]
+
+" ===
+" === Necessary Commands to Execute
+" ===
+"clear search high light whem use vim or nvim open a file
+exec "nohlsearch"
