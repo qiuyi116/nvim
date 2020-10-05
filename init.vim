@@ -116,7 +116,7 @@ let mapleader=" "
 " Save & quit
 map S :w<CR>
 map Q :q<CR>
-
+map ! :q!<CR>
 " Reload config file
 map R :source ~/.config/nvim/init.vim<CR>
 
@@ -131,6 +131,10 @@ nnoremap Y y$
 
 " Copy to system clipboard
 vnoremap Y :w !xclip -i -sel c<CR>
+
+" delete a word, like <C-w> but with delete
+" <C-o> for normal command in insert mode
+inoremap <C-d> <C-o>daw
 
 " Clear all search high light
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -168,7 +172,7 @@ map <LEADER>h <C-w>h
 map <LEADER>l <C-w>l
 
 " Disabling the default s key
-noremap s <nop>
+" noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
@@ -199,11 +203,11 @@ noremap <LEADER>q <C-w>j:q<CR>
 " ===
 " Create a new tab with tu
 map tu :tabe<CR>
-" Move around tabs with tj and tl
-map tj :-tabnext<CR>
+" Move around tabs with th and tl
+map th :-tabnext<CR>
 map tl :+tabnext<CR>
-" Move the tabs with tmj and tml
-map tmj :-tabmove<CR>
+" Move the tabs with tmh and tml
+map tmh :-tabmove<CR>
 map tml :+tabmove<CR>
 
 " ===
@@ -289,7 +293,7 @@ Plug 'kshenoy/vim-signature'
 " Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Clojure
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Go
 " Plug 'fatih/vim-go', { 'for': 'go' }
@@ -326,27 +330,29 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'roxma/nvim-yarp'
 
-"color
+" color theme
 Plug 'connorholyday/vim-snazzy'
+Plug 'doums/darcula'
 
 
 " Initialize plugin system
 call plug#end()
 
-
-" open transparent and color
-let g:SnazzyTransparent = 1
 " enable true colors support
 set termguicolors
-"colorscheme snazzy
-let g:space_vim_transp_bg = 1
 
-let g:lightline = {
-  \     'active': {
-  \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
-  \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
-  \     }
-  \ }
+" snazzy
+" colorscheme snazzy
+" let g:lightline = {
+" \     'active': {
+" \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+" \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
+" \     }
+" \ }
+
+" darcula
+colorscheme darcula
+let g:lightline = { 'colorscheme': 'darculaOriginal' }
 
 
 " ===
@@ -355,7 +361,7 @@ let g:lightline = {
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 " 'coc-stylelint' removed for can't install
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss']
+let g:coc_global_extensions = ['coc-python', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss']
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -368,6 +374,8 @@ inoremap <silent><expr> <Tab>
 			\ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> for confirm completion
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
@@ -388,16 +396,16 @@ let g:rainbow_active = 1
 " === NERDTree
 " ===
 map tt :NERDTreeToggle<CR>
-let NERDTreeMapOpenExpl = ""
-let NERDTreeMapUpdir = ""
-let NERDTreeMapUpdirKeepOpen = "l"
-let NERDTreeMapOpenSplit = ""
-let NERDTreeOpenVSplit = ""
-let NERDTreeMapActivateNode = "i"
-let NERDTreeMapOpenInTab = "o"
-let NERDTreeMapPreview = ""
-let NERDTreeMapCloseDir = "n"
-let NERDTreeMapChangeRoot = "y"
+" let NERDTreeMapOpenExpl = ""
+" let NERDTreeMapUpdir = ""
+" let NERDTreeMapUpdirKeepOpen = "l"
+" let NERDTreeMapOpenSplit = ""
+" let NERDTreeOpenVSplit = ""
+" let NERDTreeMapActivateNode = "i"
+" let NERDTreeMapOpenInTab = "o"
+" let NERDTreeMapPreview = ""
+" let NERDTreeMapCloseDir = "n"
+" let NERDTreeMapChangeRoot = "y"
 
 " ==
 " == NERDTree-git
