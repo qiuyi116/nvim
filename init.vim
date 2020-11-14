@@ -251,11 +251,15 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-"" (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
+" fzf for search
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Undo Tree
 Plug 'mbbill/undotree/'
+
+" Terminal
+Plug 'voldikss/vim-floaterm'
 
 " Other visual enhancement
 Plug 'nathanaelkane/vim-indent-guides'
@@ -265,6 +269,9 @@ Plug 'mhinz/vim-startify'
 
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
+
+" editorconfig
+Plug 'editorconfig/editorconfig-vim'
 
 " Git
 Plug 'rhysd/conflict-marker.vim'
@@ -436,6 +443,18 @@ let g:ctrlp_prompt_mappings = {
 " ===
 let g:undotree_DiffAutoOpen = 0
 map U :UndotreeToggle<CR>
+
+" ===
+" === floaterm
+" ===
+nnoremap   <silent>   <F7>    :FloatermNew<CR>
+tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <F8>    :FloatermPrev<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F9>    :FloatermNext<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 
 " ===
 " === vim-indent-guide
