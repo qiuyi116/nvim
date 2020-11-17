@@ -10,7 +10,8 @@ set clipboard=unnamed
 " let the color compatiable to terminal
 let &t_ut=' '
 " automatic change working dir at now edit file's path
-set autochdir
+" default, vim working dir is always the start dir
+" set autochdir
 
 " ===
 " === Editor behavior
@@ -260,6 +261,7 @@ Plug 'mbbill/undotree/'
 
 " Terminal
 Plug 'voldikss/vim-floaterm'
+Plug 'voldikss/fzf-floaterm'
 
 " Other visual enhancement
 Plug 'nathanaelkane/vim-indent-guides'
@@ -336,6 +338,9 @@ Plug 'vim-scripts/restore_view.vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'roxma/nvim-yarp'
+
+" Doc
+Plug 'rizzatti/dash.vim'
 
 " color theme
 Plug 'connorholyday/vim-snazzy'
@@ -447,14 +452,42 @@ map U :UndotreeToggle<CR>
 " ===
 " === floaterm
 " ===
+nnoremap   <silent>   <F6>   :FloatermKill<CR>
+tnoremap   <silent>   <F6>   <C-\><C-n>:FloatermKill<CR>
 nnoremap   <silent>   <F7>    :FloatermNew<CR>
 tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
 nnoremap   <silent>   <F8>    :FloatermPrev<CR>
 tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
 nnoremap   <silent>   <F9>    :FloatermNext<CR>
 tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <F10>   :FloatermToggle<CR>
+tnoremap   <silent>   <F10>   <C-\><C-n>:FloatermToggle<CR>
+tnoremap   <silent>   <F11>   <C-\><C-n>:FloatermFirst<CR>
+nnoremap   <silent>   <F12>   :FloatermLast<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermLast<CR>
+let g:floaterm_width = 0.4
+let g:floaterm_height = 0.5
+let g:floaterm_position = 'bottomright'
+
+" ===
+" === fzf.vim
+" ===
+" use Meta as fzf.vim prefix key
+:nnoremap <M-f> :Files<CR>
+:nnoremap <M-g> :GFiles?<CR>
+:nnoremap <M-G> :GFiles<CR>
+:nnoremap <M-b> :Buffers<CR>
+:nnoremap <M-a> :Ag<CR>
+:nnoremap <M-r> :Rg<CR>
+:nnoremap <M-l> :Lines<CR>
+:nnoremap <M-L> :BLines<CR>
+:nnoremap <M-w> :Windows<CR>
+:nnoremap <M-c> :Commits<CR>
+:nnoremap <M-C> :BCommits<CR>
+:nnoremap <M-h> :History<CR>
+:nnoremap <M-H> :History:<CR>
+:nnoremap <M-d> :Commands<CR>
+:nnoremap <M-m> :Marks<CR>
 
 " ===
 " === vim-indent-guide
@@ -503,7 +536,24 @@ let g:SignatureMap = {
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
-" ==
+" ===
+" === nerdcommenter
+" ===
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
+
+" ===
+" === dash.vim
+" ===
+:nmap <silent> <leader>d <Plug>DashGlobalSearch
+:nmap <silent> <leader>D <Plug>DashSearch
+let g:dash_activate = 1
+
+" ===
 " == vim-multiple-cursor
 " ==
 "let g:multi_cursor_use_default_mapping=0
