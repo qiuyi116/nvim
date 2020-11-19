@@ -12,6 +12,7 @@ let &t_ut=' '
 " automatic change working dir at now edit file's path
 " default, vim working dir is always the start dir
 " set autochdir
+" autocmd BufEnter * silent! lcd %:p:h
 
 " ===
 " === Editor behavior
@@ -244,10 +245,10 @@ Plug 'bling/vim-bufferline'
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+" Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 
 " Taglist
-Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' } 
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' } 
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -292,7 +293,7 @@ Plug 'mattn/emmet-vim'
 " Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
 " Bookmarks
-Plug 'kshenoy/vim-signature'
+" Plug 'kshenoy/vim-signature'
 
 " Python
 " Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
@@ -434,14 +435,14 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-" ===
-" === CtrlP
-" ===
-map <C-p> :CtrlP<CR>
-let g:ctrlp_prompt_mappings = {
-  \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-u>', '<up>'],
-  \ }
+" " ===
+" " === CtrlP
+" " ===
+" map <C-p> :CtrlP<CR>
+" let g:ctrlp_prompt_mappings = {
+  " \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
+  " \ 'PrtSelectMove("k")':   ['<c-u>', '<up>'],
+  " \ }
 
 " ===
 " === UndoTree
@@ -452,22 +453,24 @@ map U :UndotreeToggle<CR>
 " ===
 " === floaterm
 " ===
-nnoremap   <silent>   <F6>   :FloatermKill<CR>
-tnoremap   <silent>   <F6>   <C-\><C-n>:FloatermKill<CR>
+nnoremap   <silent>   <F6>    :FloatermKill<CR>
+tnoremap   <silent>   <F6>    <C-\><C-n>:FloatermKill<CR>
 nnoremap   <silent>   <F7>    :FloatermNew<CR>
 tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
-nnoremap   <silent>   <F8>    :FloatermPrev<CR>
-tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <F9>    :FloatermNext<CR>
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <F10>   :FloatermToggle<CR>
-tnoremap   <silent>   <F10>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <F8>    :FloatermToggle<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <F9>    :FloatermPrev<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F10>   :FloatermNext<CR>
+tnoremap   <silent>   <F10>   <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <F11>   :FloatermFirst<CR>
 tnoremap   <silent>   <F11>   <C-\><C-n>:FloatermFirst<CR>
 nnoremap   <silent>   <F12>   :FloatermLast<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermLast<CR>
-let g:floaterm_width = 0.4
-let g:floaterm_height = 0.5
-let g:floaterm_position = 'bottomright'
+let g:floaterm_width = 0.6
+let g:floaterm_height = 0.6
+let g:floaterm_position = 'center'
+let g:floaterm_winblend = 20
 
 " ===
 " === fzf.vim
@@ -488,6 +491,7 @@ let g:floaterm_position = 'bottomright'
 :nnoremap <M-H> :History:<CR>
 :nnoremap <M-d> :Commands<CR>
 :nnoremap <M-m> :Marks<CR>
+:nnoremap <M-t> :Floaterms<CR>
 
 " ===
 " === vim-indent-guide
@@ -502,39 +506,41 @@ autocmd WinEnter * silent! unmap <LEADER>ig
 " ===
 " === Taglist
 " ===
-map <silent> T :TagbarOpenAutoClose<CR>
+" map <silent> T :TagbarOpenAutoClose<CR>
 
 " ===
 " === Goyo
 " ===
 map <LEADER>gy :Goyo<CR>
+let g:goyo_width = 100
+let g:goyo_linenr = 0
 
 " ===
 " === vim-signiture
 " ===
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
+" let g:SignatureMap = {
+        " \ 'Leader'             :  "m",
+        " \ 'PlaceNextMark'      :  "m,",
+        " \ 'ToggleMarkAtLine'   :  "m.",
+        " \ 'PurgeMarksAtLine'   :  "dm-",
+        " \ 'DeleteMark'         :  "dm",
+        " \ 'PurgeMarks'         :  "dm/",
+        " \ 'PurgeMarkers'       :  "dm?",
+        " \ 'GotoNextLineAlpha'  :  "m<LEADER>",
+        " \ 'GotoPrevLineAlpha'  :  "",
+        " \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
+        " \ 'GotoPrevSpotAlpha'  :  "",
+        " \ 'GotoNextLineByPos'  :  "",
+        " \ 'GotoPrevLineByPos'  :  "",
+        " \ 'GotoNextSpotByPos'  :  "mn",
+        " \ 'GotoPrevSpotByPos'  :  "mp",
+        " \ 'GotoNextMarker'     :  "",
+        " \ 'GotoPrevMarker'     :  "",
+        " \ 'GotoNextMarkerAny'  :  "",
+        " \ 'GotoPrevMarkerAny'  :  "",
+        " \ 'ListLocalMarks'     :  "m/",
+        " \ 'ListLocalMarkers'   :  "m?"
+        " \ }
 
 " ===
 " === nerdcommenter
