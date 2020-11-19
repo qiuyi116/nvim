@@ -18,7 +18,7 @@ let &t_ut=' '
 " === Editor behavior
 " ===
 " show line number
-set number
+" set number
 " show relative line number
 " set relativenumber
 "show corsor line
@@ -140,6 +140,10 @@ inoremap <C-d> <C-o>daw
 
 " Clear all search high light
 noremap <LEADER><CR> :nohlsearch<CR>
+
+" line number
+noremap <C-N><C-N> :set invnumber<CR>
+inoremap <C-N><C-N> <C-O>:set invnumber<CR>
 
 " ===
 " === Cursor Movement
@@ -470,7 +474,7 @@ tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermLast<CR>
 let g:floaterm_width = 0.6
 let g:floaterm_height = 0.6
 let g:floaterm_position = 'center'
-let g:floaterm_winblend = 20
+let g:floaterm_winblend = 0
 
 " ===
 " === fzf.vim
