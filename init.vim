@@ -119,6 +119,7 @@ let mapleader=" "
 map S :w<CR>
 map Q :q<CR>
 map ! :q!<CR>
+
 " Reload config file
 map R :source ~/.config/nvim/init.vim<CR>
 
@@ -127,6 +128,9 @@ map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open Startify
 map <LEADER>st :Startify<CR>
+
+" Open zshrc
+map <LEADER>zs :e ~/.zshrc<CR>
 
 " Make Y to copy till the end of the line
 nnoremap Y y$
@@ -144,6 +148,11 @@ noremap <LEADER><CR> :nohlsearch<CR>
 " line number
 noremap <C-N><C-N> :set invnumber<CR>
 inoremap <C-N><C-N> <C-O>:set invnumber<CR>
+
+" Disabling the default s key
+" noremap s <nop>
+" Disabling the r key
+noremap r <nop>
 
 " ===
 " === Cursor Movement
@@ -163,10 +172,8 @@ noremap <C-e> $
 inoremap jj <ESC>
 
 " Faster in-line navigation
-"noremap W 5w
-"noremap B 5b
-" set h (same as n, cursor left) to 'end of word'
-"noremap h e
+noremap W 5w
+noremap B 5b
 
 " ===
 " === Window management
@@ -176,9 +183,6 @@ map <LEADER>k <C-w>k
 map <LEADER>j <C-w>j
 map <LEADER>h <C-w>h
 map <LEADER>l <C-w>l
-
-" Disabling the default s key
-" noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
@@ -248,7 +252,6 @@ Plug 'bling/vim-bufferline'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 
 " Taglist
@@ -271,7 +274,7 @@ Plug 'voldikss/fzf-floaterm'
 " Other visual enhancement
 Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'itchyny/vim-cursorword'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'mhinz/vim-startify'
 
 " Rainbow parentheses
@@ -281,17 +284,18 @@ Plug 'luochen1990/rainbow'
 Plug 'editorconfig/editorconfig-vim'
 
 " Git
-Plug 'rhysd/conflict-marker.vim'
+" Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " HTML, CSS, JavaScript, JSON, etc.
-Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'elzr/vim-json'
+" Plug 'hail2u/vim-css3-syntax'
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less'] }
 Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
 " markdown
 " Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
@@ -322,8 +326,8 @@ Plug 'mattn/emmet-vim'
 " Plug 'rust-lang/rust.vim', { 'for': 'rs' }
 
 " For general writing
-Plug 'reedes/vim-wordy'
-Plug 'ron89/thesaurus_query.vim'
+" Plug 'reedes/vim-wordy'
+" Plug 'ron89/thesaurus_query.vim'
 
 " Other useful utilities
 Plug 'jiangmiao/auto-pairs'
@@ -331,18 +335,18 @@ Plug 'terryma/vim-multiple-cursors'
 " distraction free writing mode
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
-Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
+" Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 "Plug 'yuttie/comfortable-motion.vim'
-Plug 'brooth/far.vim'
+" Plug 'brooth/far.vim'
 Plug 'kassio/neoterm'
-Plug 'vim-scripts/restore_view.vim'
+" Plug 'vim-scripts/restore_view.vim'
 
 " Dependencies
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'kana/vim-textobj-user'
-Plug 'roxma/nvim-yarp'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'kana/vim-textobj-user'
+" Plug 'roxma/nvim-yarp'
 
 " Doc
 Plug 'rizzatti/dash.vim'
@@ -427,17 +431,19 @@ map tt :NERDTreeToggle<CR>
 " ==
 " == NERDTree-git
 " ==
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "?",
-    \ "Staged"    : "?",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "?",
-    \ "Unmerged"  : "?",
-    \ "Deleted"   : "?",
-    \ "Dirty"     : "?",
-    \ "Clean"     : "??",
-    \ "Unknown"   : "?"
-    \ }
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 " " ===
 " " === CtrlP
@@ -579,11 +585,11 @@ let g:dash_activate = 1
 " ===
 " === Startify
 " ===
-"let g:startify_lists = [
-"      \ { 'type': 'files',     'header': ['   MRU']            },
-"      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-"      \ { 'type': 'commands',  'header': ['   Commands']       },
-"      \ ]
+let g:startify_lists = [
+     \ { 'type': 'files',     'header': ['   MRU']            },
+     \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+     \ { 'type': 'commands',  'header': ['   Commands']       },
+     \ ]
 
 " ===
 " === Necessary Commands to Execute

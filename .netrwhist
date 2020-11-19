@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/Users/QY/.config/nvim'
+let g:netrw_dirhist_6='/Users/QY/.config'
+let g:netrw_dirhist_5='/Users/QY'
+let g:netrw_dirhist_4='/Users/QY/.config'
+let g:netrw_dirhist_3='/Users/QY/.config/nvim'
 let g:netrw_dirhist_2='/Users/QY/leancloud/code/uluru/uluru-platform'
 let g:netrw_dirhist_1='/Users/QY/.config/fish/functions'
