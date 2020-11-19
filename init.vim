@@ -243,19 +243,13 @@ noremap <LEADER>/ :term<CR>
 "vim-plug begin
 call plug#begin('~/.config/nvim/plugged')
 
-" Pretty Dress
-" status bar
+" Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" show the list of buffers in the command bar
 Plug 'bling/vim-bufferline'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
-
-" Taglist
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' } 
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -273,9 +267,10 @@ Plug 'voldikss/fzf-floaterm'
 
 " Other visual enhancement
 Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'itchyny/vim-cursorword'
-" Plug 'tmhedberg/SimpylFold'
 Plug 'mhinz/vim-startify'
+
+" Bookmarks
+" Plug 'kshenoy/vim-signature'
 
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
@@ -284,24 +279,18 @@ Plug 'luochen1990/rainbow'
 Plug 'editorconfig/editorconfig-vim'
 
 " Git
-" Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
-" HTML, CSS, JavaScript, JSON, etc.
-" Plug 'elzr/vim-json'
-" Plug 'hail2u/vim-css3-syntax'
+
+" Language supports
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less'] }
 Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-" Plug 'mattn/emmet-vim'
 
 " markdown
 " Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
-" Bookmarks
-" Plug 'kshenoy/vim-signature'
 
 " Python
 " Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
@@ -325,33 +314,19 @@ Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 " Rust
 " Plug 'rust-lang/rust.vim', { 'for': 'rs' }
 
-" For general writing
-" Plug 'reedes/vim-wordy'
-" Plug 'ron89/thesaurus_query.vim'
-
 " Other useful utilities
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 " distraction free writing mode
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
-" Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
-"Plug 'yuttie/comfortable-motion.vim'
-" Plug 'brooth/far.vim'
 Plug 'kassio/neoterm'
-" Plug 'vim-scripts/restore_view.vim'
-
-" Dependencies
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'kana/vim-textobj-user'
-" Plug 'roxma/nvim-yarp'
-
-" Doc
+" doc
 Plug 'rizzatti/dash.vim'
 
-" color theme
+" Color theme
 Plug 'connorholyday/vim-snazzy'
 Plug 'doums/darcula'
 
@@ -445,15 +420,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Unknown'   :'?',
                 \ }
 
-" " ===
-" " === CtrlP
-" " ===
-" map <C-p> :CtrlP<CR>
-" let g:ctrlp_prompt_mappings = {
-  " \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
-  " \ 'PrtSelectMove("k")':   ['<c-u>', '<up>'],
-  " \ }
-
 " ===
 " === UndoTree
 " ===
@@ -512,11 +478,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 1
 silent! unmap <LEADER>ig
 autocmd WinEnter * silent! unmap <LEADER>ig
-
-" ===
-" === Taglist
-" ===
-" map <silent> T :TagbarOpenAutoClose<CR>
 
 " ===
 " === Goyo
