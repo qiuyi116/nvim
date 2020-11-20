@@ -267,7 +267,7 @@ Plug 'bling/vim-bufferline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Coc and FZF
-Plug '/usr/local/opt/fzf'
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
