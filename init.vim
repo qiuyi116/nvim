@@ -113,6 +113,7 @@ let g:terminal_color_14 = '#9AEDFE'
 " ===
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
+let maplocalleader = "'"
 " map ; :
 
 " Save & quit
@@ -123,14 +124,11 @@ map ! :q!<CR>
 " Reload config file
 map R :source ~/.config/nvim/init.vim<CR>
 
-" Open the vimrc file anytime
-map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
-
-" Open Startify
-map <LEADER>st :Startify<CR>
+" Open the init.vim file anytime
+map <LEADER>rr :e ~/.config/nvim/init.vim<CR>
 
 " Open zshrc
-map <LEADER>zs :e ~/.zshrc<CR>
+map <LEADER>zz :e ~/.zshrc<CR>
 
 " Make Y to copy till the end of the line
 nnoremap Y y$
@@ -273,7 +271,7 @@ Plug 'mhinz/vim-startify'
 " Plug 'kshenoy/vim-signature'
 
 " Rainbow parentheses
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow', { 'for': 'clojure' }
 
 " editorconfig
 Plug 'editorconfig/editorconfig-vim'
@@ -301,15 +299,20 @@ Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 
 " Clojure
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'tpope/vim-salve', { 'for': 'clojure' }
+Plug 'guns/vim-sexp',    {'for': 'clojure'}
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
 
 " Go
 " Plug 'fatih/vim-go', { 'for': 'go' }
 
-" TypesSript
-" Plug 'leafgarland/typescript-vim', { 'for': 'ts' }
+" tsx
+Plug 'leafgarland/typescript-vim', {'for': 'tsx'}
+Plug 'peitalin/vim-jsx-typescript', {'for': 'tsx'}
 
 " CoffeeScript
-" Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
 " Rust
 " Plug 'rust-lang/rust.vim', { 'for': 'rs' }
@@ -451,23 +454,23 @@ let g:floaterm_winblend = 0
 " ===
 " === fzf.vim
 " ===
-" use Meta as fzf.vim prefix key
-:nnoremap <M-f> :Files<CR>
-:nnoremap <M-g> :GFiles?<CR>
-:nnoremap <M-G> :GFiles<CR>
-:nnoremap <M-b> :Buffers<CR>
-:nnoremap <M-a> :Ag<CR>
-:nnoremap <M-r> :Rg<CR>
-:nnoremap <M-l> :Lines<CR>
-:nnoremap <M-L> :BLines<CR>
-:nnoremap <M-w> :Windows<CR>
-:nnoremap <M-c> :Commits<CR>
-:nnoremap <M-C> :BCommits<CR>
-:nnoremap <M-h> :History<CR>
-:nnoremap <M-H> :History:<CR>
-:nnoremap <M-d> :Commands<CR>
-:nnoremap <M-m> :Marks<CR>
-:nnoremap <M-t> :Floaterms<CR>
+" use `;` as fzf.vim prefix key
+:nnoremap ;f :Files<CR>
+:nnoremap ;g :GFiles?<CR>
+:nnoremap ;G :GFiles<CR>
+:nnoremap ;b :Buffers<CR>
+:nnoremap ;a :Ag<CR>
+:nnoremap ;r :Rg<CR>
+:nnoremap ;l :Lines<CR>
+:nnoremap ;L :BLines<CR>
+:nnoremap ;w :Windows<CR>
+:nnoremap ;c :Commits<CR>
+:nnoremap ;C :BCommits<CR>
+:nnoremap ;h :History<CR>
+:nnoremap ;H :History:<CR>
+:nnoremap ;d :Commands<CR>
+:nnoremap ;m :Marks<CR>
+:nnoremap ;t :Floaterms<CR>
 
 " ===
 " === vim-indent-guide
@@ -553,6 +556,18 @@ let g:startify_lists = [
      \ ]
 
 " ===
+" === tsx
+" ===
+" set filetypes as typescript.tsx
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+
+
+" ===
+" === vim-iced
+" ===
+let g:iced_enable_default_key_mappings = v:true
+
+"===
 " === Necessary Commands to Execute
 " ===
 "clear search high light whem use vim or nvim open a file

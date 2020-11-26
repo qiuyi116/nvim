@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/Users/QY/tmp'
+let g:netrw_dirhist_8='/Users/QY/leancloud/code/cloud-code/engine-stateful/prebuilt-images'
 let g:netrw_dirhist_7='/Users/QY/.config/nvim'
 let g:netrw_dirhist_6='/Users/QY/.config'
 let g:netrw_dirhist_5='/Users/QY'
