@@ -300,9 +300,9 @@ Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 " Clojure
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Plug 'tpope/vim-salve', { 'for': 'clojure' }
-Plug 'guns/vim-sexp',    {'for': 'clojure'}
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
-Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+" Plug 'guns/vim-sexp',    {'for': 'clojure'}
+" Plug 'liquidz/vim-iced', {'for': 'clojure'}
+" Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
 
 " Go
 " Plug 'fatih/vim-go', { 'for': 'go' }
@@ -357,6 +357,23 @@ let g:lightline = { 'colorscheme': 'darculaOriginal' }
 " ===
 " === coc
 " ===
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 " 'coc-stylelint' removed for can't install
@@ -385,6 +402,31 @@ nmap <leader>rn <Plug>(coc-rename)
 " Change completion windows background
 hi Pmenu ctermfg=0 ctermbg=6 guibg=#444444
 hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 
 " ===
 " === Rainbow
@@ -560,12 +602,6 @@ let g:startify_lists = [
 " ===
 " set filetypes as typescript.tsx
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-
-
-" ===
-" === vim-iced
-" ===
-let g:iced_enable_default_key_mappings = v:true
 
 "===
 " === Necessary Commands to Execute
