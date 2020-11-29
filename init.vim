@@ -120,7 +120,10 @@ let g:terminal_color_14 = '#9AEDFE'
 " ===
 " Set <LEADER> and <LOCALLEADER>
 let mapleader=" "
-let maplocalleader = "'"
+let maplocalleader = ","
+
+" use q to exit help window
+autocmd FileType help noremap <buffer> q :q<cr>
 
 " Save & quit
 map S :w<CR>
@@ -221,6 +224,11 @@ map tl :+tabnext<CR>
 " Move the tabs with tmh and tml
 map tmh :-tabmove<CR>
 map tml :+tabmove<CR>
+
+" <Leader>[1-9] move to tab [1-9]
+for s:i in range(1, 9)
+  execute 'nnoremap <Leader>' . s:i . ' ' . s:i . 'gt'
+endfor
 
 " ===
 " === Terminal
@@ -355,7 +363,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> C :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
