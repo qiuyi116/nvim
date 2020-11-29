@@ -251,7 +251,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 
 " File navigation
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Coc and FZF
 Plug '/usr/local/opt/fzf'
@@ -380,7 +380,7 @@ let g:rainbow_active = 1
 " ===
 " === NERDTree
 " ===
-" map tt :NERDTreeToggle<CR>
+map tt :NERDTreeToggle<CR>
 
 " ===
 " === floaterm
