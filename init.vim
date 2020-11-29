@@ -14,6 +14,9 @@ let &t_ut=' '
 " set autochdir
 " autocmd BufEnter * silent! lcd %:p:h
 
+" enable mouse scroll
+set mouse=a
+
 " ===
 " === Editor behavior
 " ===
@@ -82,6 +85,10 @@ set hlsearch
 "charter by charter high light the entered words during the search
 set incsearch
 
+" set python
+let g:python3_host_prog='/usr/local/bin/python3'
+let g:python_host_prog='/usr/local/bin/python'
+
 " open the fiel cursor at hte last edited position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -111,10 +118,9 @@ let g:terminal_color_14 = '#9AEDFE'
 " ===
 " === Basic Mappings
 " ===
-" Set <LEADER> as <SPACE>, ; as :
+" Set <LEADER> and <LOCALLEADER>
 let mapleader=" "
 let maplocalleader = "'"
-" map ; :
 
 " Save & quit
 map S :w<CR>
@@ -125,10 +131,10 @@ map ! :q!<CR>
 map R :source ~/.config/nvim/init.vim<CR>
 
 " Open the init.vim file anytime
-map <LEADER>rr :e ~/.config/nvim/init.vim<CR>
+map <LEADER>R :e ~/.config/nvim/init.vim<CR>
 
 " Open zshrc
-map <LEADER>zz :e ~/.zshrc<CR>
+map <LEADER>Z :e ~/.zshrc<CR>
 
 " Make Y to copy till the end of the line
 nnoremap Y y$
@@ -147,8 +153,6 @@ noremap <LEADER><CR> :nohlsearch<CR>
 noremap <C-N><C-N> :set invnumber<CR>
 inoremap <C-N><C-N> <C-O>:set invnumber<CR>
 
-" Disabling the default s key
-" noremap s <nop>
 " Disabling the r key
 noremap r <nop>
 
@@ -247,31 +251,22 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 
 " File navigation
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" Auto Complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" fzf for search
+" Coc and FZF
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
-" Undo Tree
-Plug 'mbbill/undotree/'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'antoinemadec/coc-fzf'
 
 " Terminal
 Plug 'voldikss/vim-floaterm'
-Plug 'voldikss/fzf-floaterm'
 
 " Other visual enhancement
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'mhinz/vim-startify'
 
-" Bookmarks
-" Plug 'kshenoy/vim-signature'
-
 " Rainbow parentheses
-" Plug 'luochen1990/rainbow', { 'for': 'clojure' }
+Plug 'luochen1990/rainbow', { 'for': 'clojure' }
 
 " editorconfig
 Plug 'editorconfig/editorconfig-vim'
@@ -279,33 +274,10 @@ Plug 'editorconfig/editorconfig-vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-
-" Language supports
-Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-
-" markdown
-" Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-
-
-" Python
-" Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
-" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-
-" Ruby
-" Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v0.4.3' }
 
 " Clojure
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Plug 'tpope/vim-salve', { 'for': 'clojure' }
-" Plug 'guns/vim-sexp',    {'for': 'clojure'}
-" Plug 'liquidz/vim-iced', {'for': 'clojure'}
-" Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
-
-" Go
-" Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " tsx
 Plug 'leafgarland/typescript-vim', {'for': 'tsx'}
@@ -314,63 +286,37 @@ Plug 'peitalin/vim-jsx-typescript', {'for': 'tsx'}
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
-" Rust
-" Plug 'rust-lang/rust.vim', { 'for': 'rs' }
-
 " Other useful utilities
 Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
-" distraction free writing mode
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
-Plug 'kassio/neoterm'
-" doc
-Plug 'rizzatti/dash.vim'
 
 " Color theme
-Plug 'connorholyday/vim-snazzy'
 Plug 'doums/darcula'
-
 
 " Initialize plugin system
 call plug#end()
 
+
+" ===
+" === Color theme
+" ===
 " enable true colors support
 set termguicolors
-
-" snazzy
-" colorscheme snazzy
-" let g:lightline = {
-" \     'active': {
-" \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
-" \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
-" \     }
-" \ }
-
 " darcula
 colorscheme darcula
 let g:lightline = { 'colorscheme': 'darculaOriginal' }
-
 
 " ===
 " === coc
 " ===
 " TextEdit might fail if hidden is not set.
 set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
@@ -426,8 +372,6 @@ endfunction
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-
 " ===
 " === Rainbow
 " ===
@@ -436,40 +380,7 @@ let g:rainbow_active = 1
 " ===
 " === NERDTree
 " ===
-map tt :NERDTreeToggle<CR>
-" let NERDTreeMapOpenExpl = ""
-" let NERDTreeMapUpdir = ""
-" let NERDTreeMapUpdirKeepOpen = "l"
-" let NERDTreeMapOpenSplit = ""
-" let NERDTreeOpenVSplit = ""
-" let NERDTreeMapActivateNode = "i"
-" let NERDTreeMapOpenInTab = "o"
-" let NERDTreeMapPreview = ""
-" let NERDTreeMapCloseDir = "n"
-" let NERDTreeMapChangeRoot = "y"
-
-" ==
-" == NERDTree-git
-" ==
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
-
-" ===
-" === UndoTree
-" ===
-let g:undotree_DiffAutoOpen = 0
-map U :UndotreeToggle<CR>
+" map tt :NERDTreeToggle<CR>
 
 " ===
 " === floaterm
@@ -510,53 +421,28 @@ let g:floaterm_winblend = 0
 :nnoremap ;C :BCommits<CR>
 :nnoremap ;h :History<CR>
 :nnoremap ;H :History:<CR>
-:nnoremap ;d :Commands<CR>
-:nnoremap ;m :Marks<CR>
-:nnoremap ;t :Floaterms<CR>
+:nnoremap ;m :Commands<CR>
+:nnoremap ;k :Marks<CR>
 
 " ===
-" === vim-indent-guide
+" === coc.fzf
 " ===
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 1
-silent! unmap <LEADER>ig
-autocmd WinEnter * silent! unmap <LEADER>ig
+nnoremap <silent> ;;       :<C-u>CocFzfList<CR>
+nnoremap <silent> ;d       :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> ;D       :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> ;n       :<C-u>CocFzfList commands<CR>
+nnoremap <silent> ;e       :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> ;i       :<C-u>CocFzfList location<CR>
+nnoremap <silent> ;o       :<C-u>CocFzfList outline<CR>
+nnoremap <silent> ;s       :<C-u>CocFzfList symbols<CR>
+nnoremap <silent> ;p       :<C-u>CocFzfListResume<CR>
 
 " ===
 " === Goyo
 " ===
-map <LEADER>gy :Goyo<CR>
+map <LEADER>y :Goyo<CR>
 let g:goyo_width = 100
 let g:goyo_linenr = 0
-
-" ===
-" === vim-signiture
-" ===
-" let g:SignatureMap = {
-        " \ 'Leader'             :  "m",
-        " \ 'PlaceNextMark'      :  "m,",
-        " \ 'ToggleMarkAtLine'   :  "m.",
-        " \ 'PurgeMarksAtLine'   :  "dm-",
-        " \ 'DeleteMark'         :  "dm",
-        " \ 'PurgeMarks'         :  "dm/",
-        " \ 'PurgeMarkers'       :  "dm?",
-        " \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        " \ 'GotoPrevLineAlpha'  :  "",
-        " \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        " \ 'GotoPrevSpotAlpha'  :  "",
-        " \ 'GotoNextLineByPos'  :  "",
-        " \ 'GotoPrevLineByPos'  :  "",
-        " \ 'GotoNextSpotByPos'  :  "mn",
-        " \ 'GotoPrevSpotByPos'  :  "mp",
-        " \ 'GotoNextMarker'     :  "",
-        " \ 'GotoPrevMarker'     :  "",
-        " \ 'GotoNextMarkerAny'  :  "",
-        " \ 'GotoPrevMarkerAny'  :  "",
-        " \ 'ListLocalMarks'     :  "m/",
-        " \ 'ListLocalMarkers'   :  "m?"
-        " \ }
 
 " ===
 " === nerdcommenter
@@ -567,26 +453,6 @@ let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 " let g:NERDTrimTrailingWhitespace = 1
-
-" ===
-" === dash.vim
-" ===
-:nmap <silent> <leader>d <Plug>DashGlobalSearch
-:nmap <silent> <leader>D <Plug>DashSearch
-let g:dash_activate = 1
-
-" ===
-" == vim-multiple-cursor
-" ==
-"let g:multi_cursor_use_default_mapping=0
-"let g:multi_cursor_start_word_key      = '<c-k>'
-"let g:multi_cursor_select_all_word_key = '<a-k>'
-"let g:multi_cursor_start_key           = 'g<c-k>'
-"let g:multi_cursor_select_all_key      = 'g<a-k>'
-"let g:multi_cursor_next_key            = '<c-k>'
-"let g:multi_cursor_prev_key            = '<c-p>'
-"let g:multi_cursor_skip_key            = '<C-x>'
-"let g:multi_cursor_quit_key            = '<Esc>'
 
 " ===
 " === Startify
@@ -603,7 +469,17 @@ let g:startify_lists = [
 " set filetypes as typescript.tsx
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 
-"===
+" ===
+" === coc-explorer
+" ===
+:nmap <space>e :CocCommand explorer<CR>
+
+" ===
+" === lazygit
+" ===
+nnoremap <silent> <leader>g :LazyGit<CR>
+
+" ===
 " === Necessary Commands to Execute
 " ===
 "clear search high light whem use vim or nvim open a file
