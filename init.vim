@@ -15,7 +15,8 @@ let &t_ut=' '
 " autocmd BufEnter * silent! lcd %:p:h
 
 " enable mouse scroll
-set mouse=a
+" set mouse=nv
+filetype plugin indent on
 
 " ===
 " === Editor behavior
@@ -138,6 +139,9 @@ map <LEADER>R :e ~/.config/nvim/init.vim<CR>
 
 " Open zshrc
 map <LEADER>Z :e ~/.zshrc<CR>
+
+" Open config.fish
+map <LEADER>F :e ~/.config/fish/config.fish<CR>
 
 " Make Y to copy till the end of the line
 nnoremap Y y$
@@ -294,6 +298,9 @@ Plug 'peitalin/vim-jsx-typescript', {'for': 'tsx'}
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
+" fish
+Plug 'dag/vim-fish', {'for': 'fish'}
+
 " Other useful utilities
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
@@ -411,6 +418,7 @@ let g:floaterm_width = 0.6
 let g:floaterm_height = 0.6
 let g:floaterm_position = 'center'
 let g:floaterm_winblend = 0
+let g:floaterm_gitcommit = 'split'
 
 " ===
 " === fzf.vim
@@ -486,6 +494,11 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 " === lazygit
 " ===
 nnoremap <silent> <leader>g :LazyGit<CR>
+
+" ===
+" === fish
+" ===
+au BufNewFile,BufRead fish_funced set ft=fish
 
 " ===
 " === Necessary Commands to Execute
