@@ -289,7 +289,7 @@ Plug 'wakatime/vim-wakatime'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v0.4.3' }
+" Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v0.4.3' }
 
 " Clojure
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -496,7 +496,7 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 " ===
 " === lazygit
 " ===
-nnoremap <silent> <leader>g :LazyGit<CR>
+" nnoremap <silent> <leader>g :LazyGit<CR>
 
 " ===
 " === fish
