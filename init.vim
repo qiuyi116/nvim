@@ -283,6 +283,9 @@ Plug 'luochen1990/rainbow', { 'for': 'clojure' }
 " editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
+" wakatime
+Plug 'wakatime/vim-wakatime'
+
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
