@@ -289,7 +289,6 @@ Plug 'wakatime/vim-wakatime'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-" Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v0.4.3' }
 
 " Clojure
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -487,16 +486,6 @@ let g:startify_lists = [
 " ===
 " set filetypes as typescript.tsx
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-
-" ===
-" === coc-explorer
-" ===
-:nmap <space>e :CocCommand explorer<CR>
-
-" ===
-" === lazygit
-" ===
-" nnoremap <silent> <leader>g :LazyGit<CR>
 
 " ===
 " === fish
