@@ -186,7 +186,7 @@ noremap B 5b
 " ===
 " === Window management
 " ===
-" Use <space> + new arrow keys for moving the cursor around windows
+" Use <LEADER> + new arrow keys for moving the cursor around windows
 map <LEADER>k <C-w>k
 map <LEADER>j <C-w>j
 map <LEADER>h <C-w>h
@@ -213,7 +213,7 @@ map sv <C-w>t<C-w>H
 noremap srh <C-w>b<C-w>K
 noremap srv <C-w>b<C-w>H
 
-" Press <SPACE> + q to close the window below the current window
+" Press <LEADER> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
 
 " ===
@@ -307,7 +307,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'scrooloose/nerdcommenter' " in <LEADER>cc to comment a line; <LEADER>ci
 
 " Color theme
 Plug 'doums/darcula'
@@ -340,7 +340,7 @@ set shortmess+=c
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 " 'coc-stylelint' removed for can't install
 let g:coc_global_extensions = ['coc-python', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -355,12 +355,12 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> for confirm completion
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+" nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> rn <Plug>(coc-rename)
 " Change completion windows background
 hi Pmenu ctermfg=0 ctermbg=6 guibg=#444444
 hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
@@ -424,35 +424,28 @@ let g:floaterm_gitcommit = 'split'
 " ===
 " === fzf.vim
 " ===
-" use `;` as fzf.vim prefix key
-:nnoremap ;f :Files<CR>
-:nnoremap ;g :GFiles?<CR>
-:nnoremap ;G :GFiles<CR>
-:nnoremap ;b :Buffers<CR>
-:nnoremap ;a :Ag<CR>
-:nnoremap ;r :Rg<CR>
-:nnoremap ;l :Lines<CR>
-:nnoremap ;L :BLines<CR>
-:nnoremap ;w :Windows<CR>
-:nnoremap ;c :Commits<CR>
-:nnoremap ;C :BCommits<CR>
-:nnoremap ;h :History<CR>
-:nnoremap ;H :History:<CR>
-:nnoremap ;m :Commands<CR>
-:nnoremap ;k :Marks<CR>
+" use `<LEADER>` as fzf.vim prefix key
+nnoremap <LEADER>f :Files<CR>
+nnoremap <LEADER>g :GFiles?<CR>
+nnoremap <LEADER>G :GFiles<CR>
+nnoremap <LEADER>b :Buffers<CR>
+nnoremap <LEADER>a :Ag<CR>
+nnoremap <LEADER>r :Rg<CR>
+nnoremap <LEADER>w :Windows<CR>
+nnoremap <LEADER>n :BLines<CR>
+nnoremap <LEADER>N :Lines<CR>
+nnoremap <LEADER>i :BCommits<CR>
+nnoremap <LEADER>I :Commits<CR>
+nnoremap <LEADER>s :History:<CR>
+nnoremap <LEADER>S :History<CR>
+nnoremap <LEADER>d :Commands<CR>
 
 " ===
 " === coc.fzf
 " ===
-nnoremap <silent> ;;       :<C-u>CocFzfList<CR>
-nnoremap <silent> ;d       :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> ;D       :<C-u>CocFzfList diagnostics --current-buf<CR>
-nnoremap <silent> ;n       :<C-u>CocFzfList commands<CR>
-nnoremap <silent> ;e       :<C-u>CocFzfList extensions<CR>
-nnoremap <silent> ;i       :<C-u>CocFzfList location<CR>
-nnoremap <silent> ;o       :<C-u>CocFzfList outline<CR>
-nnoremap <silent> ;s       :<C-u>CocFzfList symbols<CR>
-nnoremap <silent> ;p       :<C-u>CocFzfListResume<CR>
+nnoremap <silent> <LEADER>;       :<C-u>CocFzfList<CR>
+nnoremap <silent> <LEADER>e       :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> <LEADER>o       :<C-u>CocFzfList outline<CR>
 
 " ===
 " === Goyo
