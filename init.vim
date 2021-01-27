@@ -119,9 +119,8 @@ let g:terminal_color_14 = '#9AEDFE'
 " ===
 " === Basic Mappings
 " ===
-" Set <LEADER> and <LOCALLEADER>
+" Set <LEADER>
 let mapleader=" "
-let maplocalleader = ","
 
 " use q to exit help window
 autocmd FileType help noremap <buffer> q :q<cr>
