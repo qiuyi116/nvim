@@ -176,9 +176,6 @@ noremap <silent> L 5l
 noremap <C-a> 0
 noremap <C-e> $
 
-" Mapping <esc>
-inoremap jj <ESC>
-
 " Faster in-line navigation
 noremap W 5w
 noremap B 5b
