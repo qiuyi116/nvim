@@ -436,6 +436,7 @@ nnoremap <LEADER>I :Commits<CR>
 nnoremap <LEADER>s :History:<CR>
 nnoremap <LEADER>S :History<CR>
 nnoremap <LEADER>d :Commands<CR>
+nnoremap <LEADER>m :Gblame<CR>
 
 " ===
 " === coc.fzf
