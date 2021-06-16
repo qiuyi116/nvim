@@ -286,9 +286,6 @@ Plug 'wakatime/vim-wakatime'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 
-" Clojure
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
 " tsx
 Plug 'leafgarland/typescript-vim', {'for': 'tsx'}
 Plug 'peitalin/vim-jsx-typescript', {'for': 'tsx'}
