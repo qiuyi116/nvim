@@ -265,6 +265,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 " Terminal
 Plug 'voldikss/vim-floaterm'
@@ -433,6 +434,14 @@ nnoremap <LEADER>s :History:<CR>
 nnoremap <LEADER>S :History<CR>
 nnoremap <LEADER>d :Commands<CR>
 nnoremap <LEADER>m :Gblame<CR>
+
+
+" ===
+" === coc.fzf
+" ===
+nnoremap <silent> <LEADER>;       :<C-u>CocFzfList<CR>
+nnoremap <silent> <LEADER>e       :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> <LEADER>o       :<C-u>CocFzfList outline<CR>
 
 " ===
 " === Goyo
