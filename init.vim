@@ -29,9 +29,9 @@ filetype plugin indent on
 set cursorline
 " expand tab
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 " apply the indentation of the current line to the next
 set autoindent
 " show the space at the end of line
@@ -39,7 +39,7 @@ set list
 " show the tab
 set listchars=tab:▸\ ,trail:▫
 " corsor distance form buffer edge some lines
-set scrolloff=4
+set scrolloff=2
 " allow for mappings includes 'Esc', while preserving zero timeout after pressing it manually
 set ttimeoutlen=0
 set notimeout
