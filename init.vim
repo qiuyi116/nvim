@@ -393,20 +393,9 @@ map tt :NERDTreeToggle<CR>
 " ===
 " === floaterm
 " ===
-nnoremap   <silent>   <F6>    :FloatermKill<CR>
-tnoremap   <silent>   <F6>    <C-\><C-n>:FloatermKill<CR>
-nnoremap   <silent>   <F7>    :FloatermNew<CR>
-tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermNew<CR>
-nnoremap   <silent>   <F8>    :FloatermToggle<CR>
-tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermToggle<CR>
-nnoremap   <silent>   <F9>    :FloatermPrev<CR>
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <F10>   :FloatermNext<CR>
-tnoremap   <silent>   <F10>   <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <F11>   :FloatermFirst<CR>
-tnoremap   <silent>   <F11>   <C-\><C-n>:FloatermFirst<CR>
-nnoremap   <silent>   <F12>   :FloatermLast<CR>
-tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermLast<CR>
+nnoremap   <silent>   <C-t>    :FloatermToggle<CR>
+tnoremap   <silent>   <C-t>    <C-\><C-n>:FloatermToggle<CR>
+
 let g:floaterm_width = 0.6
 let g:floaterm_height = 0.6
 let g:floaterm_position = 'center'
