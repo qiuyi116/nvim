@@ -156,8 +156,8 @@ inoremap <C-d> <C-o>daw
 noremap <LEADER><CR> :nohlsearch<CR>
 
 " line number
-noremap <C-N><C-N> :set invnumber<CR>
-inoremap <C-N><C-N> <C-O>:set invnumber<CR>
+" noremap <C-N><C-N> :set invnumber<CR>
+" inoremap <C-N><C-N> <C-O>:set invnumber<CR>
 
 " Disabling the r key
 noremap r <nop>
@@ -166,6 +166,11 @@ noremap r <nop>
 " === Cursor Movement
 " ===
 "
+" cursor movement in emacs style
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
 " J/K keys for 5 times j/k (faster navigation)
 noremap <silent> K 5k
 noremap <silent> J 5j
