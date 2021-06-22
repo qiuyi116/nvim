@@ -99,7 +99,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "
 let g:neoterm_autoscroll = 1
 "
-autocmd TermOpen term://* startinsert
+" autocmd TermOpen term://* startinsert
 let g:terminal_color_0  = '#000000'
 let g:terminal_color_1  = '#FF5555'
 let g:terminal_color_2  = '#50FA7B'
@@ -123,7 +123,7 @@ let g:terminal_color_14 = '#9AEDFE'
 let mapleader=" "
 
 " use q to exit help window
-autocmd FileType help noremap <buffer> q :q<cr>
+" autocmd FileType help noremap <buffer> q :q<cr>
 
 " Save & quit
 map S :w<CR>
@@ -327,6 +327,7 @@ set hidden
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
+set cmdheight=2
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
@@ -363,7 +364,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> C :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
