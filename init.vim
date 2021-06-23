@@ -403,8 +403,9 @@ nnoremap   <silent>   <C-t>    :FloatermToggle<CR>
 tnoremap   <silent>   <C-t>    <C-\><C-n>:FloatermToggle<CR>
 
 let g:floaterm_width = 0.6
-let g:floaterm_height = 0.6
-let g:floaterm_position = 'center'
+let g:floaterm_height = 0.35
+" 'top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center', 'auto'
+let g:floaterm_position = 'bottomright'
 let g:floaterm_winblend = 0
 let g:floaterm_gitcommit = 'split'
 
