@@ -368,8 +368,8 @@ hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use M to show documentation in preview window.
+nnoremap <silent> M :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -403,11 +403,11 @@ nnoremap   <silent>   <C-t>    :FloatermToggle<CR>
 tnoremap   <silent>   <C-t>    <C-\><C-n>:FloatermToggle<CR>
 
 let g:floaterm_width = 0.6
-let g:floaterm_height = 0.35
+let g:floaterm_height = 0.4
 " 'top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center', 'auto'
 let g:floaterm_position = 'bottomright'
 let g:floaterm_winblend = 0
-let g:floaterm_gitcommit = 'split'
+let g:floaterm_opener = 'vsplit'
 
 " ===
 " === fzf.vim
